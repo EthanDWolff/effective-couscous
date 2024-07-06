@@ -72,18 +72,34 @@ class Player:
 
   # breed() will display a list of the female and male geckos in the player's collection. Then player will select one male and one female from the collection. The function will take an input for the geckos name and search gecko_collection for the name. If in the list, breed() will check if can_breed = True. If both male and female can_breed = True, breed() will create a new instance of Gecko() with a random generated name, sex, and morph. Depending on the morph generated, morph xp will be added to player xp. After the geckos successfully breed, the can_breed = False. If a gecko has not been fed since instantiation, the gecko will need to fed to be breedable. 
   def breed(self):
-    print("Choose a female gecko:" )
+    print("Choose a female gecko: ")
     for gecko in gecko_collection:
       if gecko.sex == 'female':
-        print(gecko.name + ", ")
-    female_choice = input("Enter choice: ")
-
-    
+        print(gecko.name)
+    female_selection = input("Enter gecko name: ")
+    for gecko in gecko_collection:
+        if female_selection == gecko.name and gecko.can_breed == False:
+          print("This gecko isn't ready to breed right now. Please choose another.\n")
+        else:
+          print("Choose a male gecko: ")
+          for gecko in gecko_collection:
+            if gecko.sex == 'male':
+              print(gecko.name)
+#     
   def feed(self):
-    print("Who do you want to feed")
+    print("Who do you want to feed?")
     for gecko in gecko_collection:
       if gecko.is_hungry == True:
         print(gecko.name)
+    needs_food = input("Enter gecko name: ")    
+    for gecko in gecko_collection:
+      if gecko.name == needs_food:
+        gecko.is_hungry = False
+        gecko.can_breed = True
+        print("{name} has a full belly now".format(name = gecko.name))
+
+
+# show_collection() is working
 
   def show_collection(self):
     for gecko in gecko_collection:
