@@ -63,11 +63,11 @@ class Player:
     
   def __repr__(self):
     gecko_count = len(gecko_collection)
-    player_desc = "{name} has {xp} XP and {count}\n".format(name = self.name, xp = self.experience, count = gecko_count)
+    player_desc = "{name} has {xp} XP and {count}".format(name = self.name, xp = self.experience, count = gecko_count)
     if gecko_count == 1:
-      player_desc += " gecko."
+      player_desc += " gecko.\n"
     else:
-      player_desc += " geckos."
+      player_desc += " geckos.\n"
     return player_desc
 
   # breed() will display a list of the female and male geckos in the player's collection. Then player will select one male and one female from the collection. The function will take an input for the geckos name and search gecko_collection for the name. If in the list, breed() will check if can_breed = True. If both male and female can_breed = True, breed() will create a new instance of Gecko() with a random generated name, sex, and morph. Depending on the morph generated, morph xp will be added to player xp. After the geckos successfully breed, the can_breed = False. If a gecko has not been fed since instantiation, the gecko will need to fed to be breedable. 
@@ -76,15 +76,18 @@ class Player:
     for gecko in gecko_collection:
       if gecko.sex == 'female':
         print(gecko.name + ", ")
-    female_choice = input()
+    female_choice = input("Enter choice: ")
+
     
   def feed(self):
+    print("Who do you want to feed")
     for gecko in gecko_collection:
       if gecko.is_hungry == True:
         print(gecko.name)
 
   def show_collection(self):
-    print(str(gecko_collection) + "\n")
+    for gecko in gecko_collection:
+      print(str(gecko) + "\n")
     menu()
 
 player_1 = Player("Ethan")
@@ -126,10 +129,11 @@ def menu():
     menu()
 
 
+gecko1 = Gecko(random.choice(names_list), "male", random.choice(all_morph_list))
+gecko2 = Gecko(random.choice(names_list), "female", random.choice(all_morph_list))
+gecko3 = Gecko(random.choice(names_list), "male", random.choice(all_morph_list))
+gecko4 = Gecko(random.choice(names_list), "female", random.choice(all_morph_list))
+
 menu()
-
-
-
-
 
 
