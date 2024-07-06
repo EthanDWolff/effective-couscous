@@ -70,22 +70,37 @@ class Player:
       player_desc += " geckos.\n"
     return player_desc
 
-  # breed() will display a list of the female and male geckos in the player's collection. Then player will select one male and one female from the collection. The function will take an input for the geckos name and search gecko_collection for the name. If in the list, breed() will check if can_breed = True. If both male and female can_breed = True, breed() will create a new instance of Gecko() with a random generated name, sex, and morph. Depending on the morph generated, morph xp will be added to player xp. After the geckos successfully breed, the can_breed = False. If a gecko has not been fed since instantiation, the gecko will need to fed to be breedable. 
+  # breed() will display a list of the female and male geckos in the player's collection. 
+  # Then player will select one male and one female from the collection. 
+  # The function will take an input for the geckos name and search gecko_collection for the name. 
+  # If in the list, breed() will check if can_breed = True. 
+  # If both male and female can_breed = True, breed() will create a new instance of Gecko() with a random generated name, sex, and morph.
+  #  Depending on the morph generated, morph xp will be added to player xp. After the geckos successfully breed, the can_breed = False. 
+  # If a gecko has not been fed since instantiation, the gecko will need to fed to be breedable. 
   def breed(self):
     print("Choose a female gecko: ")
     for gecko in gecko_collection:
       if gecko.sex == 'female':
         print(gecko.name)
-    female_selection = input("Enter gecko name: ")
+    female_selection = input("Enter female gecko name: ")
     for gecko in gecko_collection:
         if female_selection == gecko.name and gecko.can_breed == False:
           print("This gecko isn't ready to breed right now. Please choose another.\n")
-        else:
+        elif female_selection == gecko.name and gecko.can_breed == True:
           print("Choose a male gecko: ")
           for gecko in gecko_collection:
             if gecko.sex == 'male':
               print(gecko.name)
-#     
+          male_selection = input("Enter male gecko name: ")
+          for gecko in gecko_collection:
+            if male_selection == gecko.name and gecko.can_breed == False:
+              print("This gecko isn't ready to breed right now. Please choose another.\n")
+            elif male_selection == gecko.name and gecko.can_breed == True:
+              Gecko(random.choice(names_list), random.choice(sex), random.choice(all_morph_list))
+              print("""Congratulations!!!!
+                    2 new geckos hatched and were added to your collection!""")
+        
+# feed() is working    
   def feed(self):
     print("Who do you want to feed?")
     for gecko in gecko_collection:
@@ -96,7 +111,7 @@ class Player:
       if gecko.name == needs_food:
         gecko.is_hungry = False
         gecko.can_breed = True
-        print("{name} has a full belly now".format(name = gecko.name))
+        print("{name} has a full belly now/n".format(name = gecko.name))
 
 
 # show_collection() is working
